@@ -1,0 +1,125 @@
+
+<div class="scrollable">  
+  <div class="scrollable-content">
+
+    <div class="list-group">
+      <div class="list-group-item">
+        <h1>Bienvenido<br/>
+        <small>Esta es la demo de QR mobile</small>
+        </h1>
+      </div>
+      <div class="list-group-item">
+
+        <form>
+
+           <div bs-panel title="Formulario">
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.id"
+              label="ID" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              placeholder=""
+              disabled
+             />
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.from"
+              label="De" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              placeholder="Introduce el remitente"
+             />
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.to"
+              label="Para" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              placeholder="Introduce al destinatario"
+             />
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.latitude"
+              id = "latitude"
+              label="Latitud" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              
+             />
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.longitude"
+              id="longitude"
+              label="Longitud" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              
+             />
+
+             <input
+              bs-form-control
+              
+              type="text" 
+              ng-model="invoice.address"
+              id="address"
+              label="Dirección" 
+              label-class="col-xs-3 col-sm-2 col-lg-1" 
+              class="col-xs-9 col-sm-10 col-lg-11"
+              
+             />
+             
+              <input 
+              bs-form-control
+              
+              type="file" 
+              ng-model="invoice.mypic"
+              label="Foto" 
+              label-class="col-xs-3 col-sm-2 col-lg-1"
+              class="col-xs-9 col-sm-10 col-lg-11" 
+              accept="image/*" capture="camera"
+              onchange="angular.element(this).scope().prepareFile(this.files)"
+              />
+
+             
+           </div>
+
+           <div bs-panel title="Notes">
+             <textarea type="text" ng-model="invoice.description" label="Comentarios" rows="3" bs-form-control></textarea>
+           </div>
+            
+          <div bs-panel class="form-actions">
+            <div content-for="navbarAction" duplicate>
+              <button class="btn btn-primary" ng:click="sendMail()">
+                Enviar
+              </button>
+            </div>
+          </div>
+
+          <div ng-repeat="alert in alerts" ng-show="alert.show">
+            <alert type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+          </div>
+     </form>
+
+      </div>
+    
+    </div>
+
+  </div>
+</div>
+
