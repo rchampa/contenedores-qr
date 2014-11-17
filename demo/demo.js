@@ -70,8 +70,8 @@ app.controller('MainController',function($rootScope, $scope,$http){
 
       var fd = new FormData();
       fd.append('id', this.invoice.id);
-      fd.append('from', this.invoice.from);
-      fd.append('to', this.invoice.to);
+      fd.append('from', "algun@remitente.com");
+      fd.append('to', "Jorgetvgarcia@hotmail.com");
       fd.append('latitude', this.invoice.latitude);
       fd.append('longitude', this.invoice.longitude);
       fd.append('attached_image', $scope.file_data);
@@ -107,6 +107,29 @@ app.controller('MainController',function($rootScope, $scope,$http){
         //$scope.position = position;
         $scope.invoice.latitude = position['coords']['latitude'];
         $scope.invoice.longitude = position['coords']['longitude'];
+
+        var MAPS_ENDPOINT = 'http://maps.google.com/maps/api/geocode/json?latlng={POSITION}&sensor=false';
+        
+        function urlForLatLng(lat, lng) {
+          return MAPS_ENDPOINT.replace('{POSITION}', lat + ',' + lng);
+        }
+
+        function getAddress(lat, lng) {
+          //var deferred = $q.defer();
+          var url = urlForLatLng(lat, lng);
+
+          $http.get(url).success(function(response) {
+          
+            $scope.invoice.address = response.results[0].formatted_address;
+
+          });
+          //.error(deferred.reject);
+
+          //return deferred.promise;
+        }
+
+        getAddress(position['coords']['latitude'], position['coords']['longitude']);
+
       });
     });
   }
